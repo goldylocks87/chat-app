@@ -9,6 +9,20 @@
     <body>
         <h1>Page</h1>
         <p>Some text.</p>
+
+        <!-- load in socket.io lib -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script >
+            let socket = io();
+
+            socket.on('connect',() => {
+                console.log('Connected to server..');
+            });
+
+            socket.on('disconnect',() => {
+                console.log('Disconnected from server..');
+            });
+        </script>
     </body>
     
 </html>
