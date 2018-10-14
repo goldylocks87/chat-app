@@ -11,7 +11,7 @@ socket.on('disconnect', function () {
 socket.on('newMessage', function (message) {
     console.log(message, new Date().getMilliseconds());
 
-    var li = jQuery('<li><li/>');
+    var li = jQuery('<li></li>');
         li.text(`${message.from}: (${message.createdAt}) ${message.text}`);
 
     jQuery('#messages').append(li);
