@@ -24,8 +24,11 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('newMessage', 
         generateMessage('Admin', 'New User joined the chat...'));
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         console.log('New message...', message);
+
+        if (callback)
+            callback('Your message was successfully received');
     });
 
     socket.on('disconnect', () => {

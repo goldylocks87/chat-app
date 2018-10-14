@@ -8,8 +8,15 @@
 
     <body>
         <h1>Messages</h1>
-        <p></p>
 
+        <ol id="messages"></ol>
+
+        <form id="message-form">
+            <input name="message" type="text" placeholder="Message" />
+            <button name="Send">Send</button>
+        </form>
+
+        <script src="/libs/jquery-3.3.1.min.js"></script>
         <!-- load in socket.io lib -->
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/index.js"></script>
