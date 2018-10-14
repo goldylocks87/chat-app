@@ -21,7 +21,14 @@ io.on('connection', (socket) => {
         console.log('New message...', message);
 
         // emit to all connections
-        io.emit('newMessage', {
+        // io.emit('newMessage', {
+        //     from: message.from,
+        //     text: message.text,
+        //     createdAt: new Date().getTime()
+        // });
+
+        // emit to all connections other than sender
+        socket.broadcast.emit('newMessage', {
             from: message.from,
             text: message.text,
             createdAt: new Date().getTime()
