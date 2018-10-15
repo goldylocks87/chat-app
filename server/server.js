@@ -19,10 +19,10 @@ io.on('connection', (socket) => {
     console.log('New user connected...');
 
     socket.emit('newMessage', 
-        generateMessage('Admin', 'Welcome!'));
+        generateMessage('Admin', 'Welcome Bitch!'));
 
     socket.broadcast.emit('newMessage', 
-        generateMessage('Admin', 'New User joined the chat...'));
+        generateMessage('Admin', 'Some other muh fucka joined the chat...'));
 
     socket.on('createMessage', (message, callback) => {
         console.log('New message...', message);
@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
         console.log('User disconnected...');
 
         socket.broadcast.emit('newMessage', 
-        generateMessage('Admin', 'User left the chat...'));
+        generateMessage('Admin', 'One of the other peeps left the chat...'));
     });
 });
 
