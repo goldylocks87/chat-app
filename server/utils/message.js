@@ -4,7 +4,7 @@ let generateMessage = (from, text) => {
     return {
         from,
         text,
-        createdAt: moment().format('h:mm a')
+        createdAt: moment().valueOf()
     }
 };
 
