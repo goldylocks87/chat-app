@@ -12,11 +12,14 @@ socket.on('newMessage', function (message) {
 
     var formattedTime = moment(message.createdAt).format('h:mm a');
 
-    var htmlMessage = jQuery('<li></li>');
+    var template = jQuery('#message-template').html();
+    var html = Mustache.render(template, {
+        from: message.from,
+        text: message.text,
+        createdAt:  formattedTime
+    });
 
-    htmlMessage.text(`(${formattedTime}) ${message.from}: ${message.text}`);
-
-    jQuery('#messages').append(htmlMessage);
+    jQuery('#messages').append(html);
 });
 
 jQuery('#message-form').on('submit', function (e) {

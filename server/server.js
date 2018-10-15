@@ -16,16 +16,16 @@ app.use( express.static(publicPath) );
 
 // listen for an event
 io.on('connection', (socket) => {
-    console.log('New user connected...');
 
+    // ON USER CONNECT //
     socket.emit('newMessage', 
         generateMessage('Admin', 'Welcome Bitch!'));
 
     socket.broadcast.emit('newMessage', 
         generateMessage('Admin', 'Some other muh fucka joined the chat...'));
 
+    // ON CREATE MESSAGE //
     socket.on('createMessage', (message, callback) => {
-        console.log('New message...', message);
 
         socket.emit('newMessage', 
             generateMessage(message.from, message.text));
@@ -37,8 +37,8 @@ io.on('connection', (socket) => {
             callback('Your message was successfully received');
     });
 
+    // ON USER DISCONNECT //
     socket.on('disconnect', () => {
-        console.log('User disconnected...');
 
         socket.broadcast.emit('newMessage', 
         generateMessage('Admin', 'One of the other peeps left the chat...'));
