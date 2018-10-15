@@ -9,23 +9,27 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMessage', function (message) {
-    console.log(message, new Date().getMilliseconds());
 
-    var li = jQuery('<li></li>');
-        li.text(`${message.from}: (${message.createdAt}) ${message.text}`);
+    var htmlMessage = jQuery('<li></li>');
 
-    jQuery('#messages').append(li);
+    htmlMessage.text(`(${message.createdAt}) ${message.from}: ${message.text}`);
+
+    jQuery('#messages').append(htmlMessage);
 });
 
 jQuery('#message-form').on('submit', function (e) {
-    console.log('submitting message...');
 
     e.preventDefault();
 
+    var messageBox = jQuery('[name=message]');
+
+    // send the message by emitting an event
     socket.emit('createMessage', {
         from: 'User',
-        text: jQuery('[name=message]').val()
+        text: messageBox.val()
     }, function () {
 
+        // clear out the users message area
+        messageBox.val('');
     });
 });
